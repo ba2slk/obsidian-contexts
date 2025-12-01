@@ -1,4 +1,4 @@
-import { App, Modal, Notice, Setting } from 'obsidian';
+import { App, Modal, normalizePath, Notice, Setting } from 'obsidian';
 import type ContextsPlugin from '../main';
 import { ConfirmOverwriteModal } from './confirm-overwrite-modal';
 import { FileSelectorModal } from './file-selector-modal';
@@ -20,24 +20,30 @@ export class ManageContextsModal extends Modal {
     display() {
         const {contentEl} = this;
         contentEl.empty();
-        contentEl.createEl('h2', {text: 'Manage Contexts'});
-
-        contentEl.createEl('h3', {text: 'Add New Context Manually'});
         
         new Setting(contentEl)
-            .setName('Context Name')
+            .setName('Manage contexts')
+            .setHeading();
+
+        new Setting(contentEl)
+            .setName('Add new context manually')
+            .setHeading();
+        
+        new Setting(contentEl)
+            .setName('Context name')
             .addText(text => text
-                .setPlaceholder('My Custom Context')
+                .setPlaceholder('My new context')
                 .setValue(this.newContextName)
                 .onChange(value => this.newContextName = value));
 
         new Setting(contentEl)
-            .setName('Add Files')
+            .setName('Add files')
             .setDesc('Select files to add to this context.')
             .addButton(button => button
-                .setButtonText('+ Add File')
+                .setButtonText('+ Add file')
                 .onClick(() => {
                     new FileSelectorModal(this.app, (path) => {
+                        const normalizedPath = normalizePath(path);
                         if (!this.newContextItems.includes(path)) {
                             this.newContextItems.push(path);
                             this.display();
@@ -81,7 +87,7 @@ export class ManageContextsModal extends Modal {
 
         new Setting(contentEl)
             .addButton(button => button
-                .setButtonText('Create Context')
+                .setButtonText('Create context')
                 .setCta()
                 .onClick(async () => {
                     if (!this.newContextName) {
@@ -119,7 +125,9 @@ export class ManageContextsModal extends Modal {
 
         contentEl.createEl('hr');
 
-        contentEl.createEl('h3', {text: 'Existing Contexts'});
+        new Setting(contentEl)
+            .setName('Existing contexts')
+            .setHeading();
 
         if (this.plugin.settings.savedContexts.length === 0) {
             contentEl.createEl('p', {text: 'No saved contexts yet.'});

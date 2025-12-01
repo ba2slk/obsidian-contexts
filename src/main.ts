@@ -29,7 +29,7 @@ export default class ContextsPlugin extends Plugin {
 
         this.addCommand({
             id: 'save-context',
-            name: 'Save Current Context',
+            name: 'Save current context',
             callback: () => {
                 new SaveContextModal(this.app, this).open();
             }
@@ -37,7 +37,7 @@ export default class ContextsPlugin extends Plugin {
 
         this.addCommand({
             id: 'switch-context',
-            name: 'Switch Context',
+            name: 'Switch context',
             callback: () => {
                 new SwitchContextModal(this.app, this).open();
             }
@@ -65,7 +65,7 @@ export default class ContextsPlugin extends Plugin {
     refreshRibbonIcon() {
         if (this.settings.showRibbonIcon) {
             if (!this.ribbonIconEl) {
-                this.ribbonIconEl = this.addRibbonIcon('save', 'Save Current Context', () => {
+                this.ribbonIconEl = this.addRibbonIcon('save', 'Save current context', () => {
                     new SaveContextModal(this.app, this).open();
                 });
             }

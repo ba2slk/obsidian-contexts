@@ -17,7 +17,7 @@ export class FileSelectorModal extends Modal {
     display() {
         const { contentEl } = this;
         contentEl.empty();
-        contentEl.createEl('h2', { text: `Select File: ${this.currentPath}` });
+        contentEl.createEl('h2', { text: `Select file: ${this.currentPath}` });
 
         const listContainer = contentEl.createDiv();
         
@@ -30,7 +30,7 @@ export class FileSelectorModal extends Modal {
 
         if (this.currentPath !== '/' && folder.parent) {
             const backItem = listContainer.createDiv({ cls: 'nav-file-title' });
-            backItem.createSpan({ text: '📁 .. (Go Back)', cls: 'nav-file-title-content' });
+            backItem.createSpan({ text: '📁 .. (Go back)', cls: 'nav-file-title-content' });
             backItem.style.cursor = 'pointer';
             backItem.style.padding = '5px';
             backItem.style.fontWeight = 'bold';

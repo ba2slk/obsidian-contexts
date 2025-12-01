@@ -12,7 +12,9 @@ export class SwitchContextModal extends Modal {
     onOpen() {
         const {contentEl} = this;
 
-        contentEl.createEl('h2', {text: 'Switch Context'});
+        new Setting(contentEl)
+            .setName('Switch context')
+            .setHeading();
 
         this.plugin.settings.savedContexts.forEach(context => {
             new Setting(contentEl)

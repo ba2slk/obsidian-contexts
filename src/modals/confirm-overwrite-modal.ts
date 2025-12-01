@@ -1,4 +1,4 @@
-import { App, Modal } from 'obsidian';
+import { App, Modal, Setting } from 'obsidian';
 
 export class ConfirmOverwriteModal extends Modal {
     onConfirm: () => void;
@@ -12,7 +12,10 @@ export class ConfirmOverwriteModal extends Modal {
 
     onOpen() {
         const { contentEl } = this;
-        contentEl.createEl('h2', { text: 'Duplicate Name' });
+        new Setting(contentEl)
+            .setName('Duplicate name')
+            .setHeading();
+            
         contentEl.createEl('p', { text: `A context named "${this.contextName}" already exists.` });
         contentEl.createEl('p', { text: 'Saving now will overwrite the existing context. How would you like to proceed?' });
 
@@ -23,7 +26,7 @@ export class ConfirmOverwriteModal extends Modal {
             this.close();
         });
 
-        const confirmButton = buttonContainer.createEl('button', { cls: 'mod-cta', text: 'Save Anyway' });
+        const confirmButton = buttonContainer.createEl('button', { cls: 'mod-cta', text: 'Save anyway' });
         confirmButton.addEventListener('click', () => {
             this.onConfirm();
             this.close();

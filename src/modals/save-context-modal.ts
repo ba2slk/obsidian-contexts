@@ -15,7 +15,7 @@ export class SaveContextModal extends Modal {
         const {contentEl} = this;
         let contextName = '';
 
-        contentEl.createEl('h2', {text: 'Save Current Context'});
+        contentEl.createEl('h2', {text: 'Save current context'});
 
         const saveAndClose = async () => {
             if (!contextName) {
@@ -63,7 +63,7 @@ export class SaveContextModal extends Modal {
         };
 
         new Setting(contentEl)
-            .setName('Context Name')
+            .setName('Context name')
             .addText(text => text
                 .setPlaceholder('e.g., Coding, Reading...')
                 .onChange(value => contextName = value)

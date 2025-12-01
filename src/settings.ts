@@ -14,11 +14,13 @@ export class ContextsSettingTab extends PluginSettingTab {
         const {containerEl} = this;
         containerEl.empty();
 
-        containerEl.createEl('h2', {text: 'Contexts Settings'});
+        new Setting(containerEl)
+            .setName('General')
+            .setHeading();
 
         new Setting(containerEl)
-            .setName('Show Ribbon Icon')
-            .setDesc('Show the "Save Current Context" icon in the left ribbon sidebar.')
+            .setName('Show ribbon icon')
+            .setDesc('Show the "Save current context" icon in the left ribbon sidebar.')
             .addToggle(toggle => toggle
                 .setValue(this.plugin.settings.showRibbonIcon)
                 .onChange(async (value) => {
@@ -26,12 +28,16 @@ export class ContextsSettingTab extends PluginSettingTab {
                     await this.plugin.saveSettings();
                     this.plugin.refreshRibbonIcon();
                 }));
+                
+        new Setting(containerEl)
+            .setName('Management')
+            .setHeading();
 
         new Setting(containerEl)
-            .setName('Manage Contexts')
+            .setName('Manage contexts')
             .setDesc('Manually add, view, or delete saved contexts.')
             .addButton(button => button
-                .setButtonText('Manage Contexts')
+                .setButtonText('Manage contexts')
                 .setCta()
                 .onClick(() => {
                     new ManageContextsModal(this.app, this.plugin).open();
