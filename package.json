@@ -1,6 +1,6 @@
 {
   "name": "obsidian-contexts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Save and switch between working contexts in Obsidian",
   "main": "main.js",
   "scripts": {
