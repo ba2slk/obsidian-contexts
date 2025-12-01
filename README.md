@@ -29,6 +29,8 @@
 3. Your current tabs will close, and the saved context will load instantly.
 
 ### 3. Managing Contexts
+![contexts-settings-demo](https://github.com/user-attachments/assets/976a9e2c-c411-4526-b003-385d28429618)
+
 1. Go to **Settings** > **Contexts**.
 2. Click **Manage Contexts**.
 3. In this modal, you can:
