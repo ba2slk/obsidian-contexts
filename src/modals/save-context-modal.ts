@@ -15,8 +15,10 @@ export class SaveContextModal extends Modal {
         const {contentEl} = this;
         let contextName = '';
 
-        contentEl.createEl('h2', {text: 'Save current context'});
-
+        new Setting(contentEl)
+            .setName('Save current context')
+            .setHeading();
+        
         const saveAndClose = async () => {
             if (!contextName) {
                 new Notice("Please enter a context name.");

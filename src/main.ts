@@ -8,24 +8,12 @@ export default class ContextsPlugin extends Plugin {
     settings: ContextsPluginSettings;
     ribbonIconEl: HTMLElement | null = null;
 
-    addCommands() {
-        // @ts-ignore
-        this.app.commands.listCommands().forEach(command => {
-            if (command.id.startsWith('load-tab-group-') || command.id.startsWith('save-tab-group-')) {
-                // @ts-ignore
-                this.app.commands.removeCommand(command.id);
-            }
-        });
-    }
-
     async onload() {
         await this.loadSettings();
 
         this.refreshRibbonIcon();
 
         this.addSettingTab(new ContextsSettingTab(this.app, this));
-
-        this.addCommands();
 
         this.addCommand({
             id: 'save-context',
@@ -42,12 +30,6 @@ export default class ContextsPlugin extends Plugin {
                 new SwitchContextModal(this.app, this).open();
             }
         });
-
-        this.registerEvent(
-            this.app.workspace.on('layout-change', () => {
-                this.addCommands();
-            })
-        );
     }
 
     onunload() {
