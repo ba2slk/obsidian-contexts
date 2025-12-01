@@ -1,10 +1,10 @@
 {
-	"id": "obsidian-contexts",
+	"id": "contexts",
 	"name": "Contexts",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"minAppVersion": "0.15.0",
 	"description": "Save and switch between different working contexts. Manages groups of tabs including Markdown, PDF, Canvas, and Images.",
 	"author": "ba2slk",
-	"authorUrl": "https://github.com/ba2slk/obsidian-contexts",
+	"authorUrl": "https://github.com/ba2slk",
 	"isDesktopOnly": false
 }
