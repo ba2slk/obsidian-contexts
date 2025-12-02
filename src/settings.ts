@@ -16,7 +16,7 @@ export class ContextsSettingTab extends PluginSettingTab {
 
         new Setting(containerEl)
             .setName('Show ribbon icon')
-            .setDesc('Show the "Save current context" icon in the left ribbon sidebar.')
+            .setDesc('Show the "save current context" icon in the left ribbon sidebar.')
             .addToggle(toggle => toggle
                 .setValue(this.plugin.settings.showRibbonIcon)
                 .onChange(async (value) => {

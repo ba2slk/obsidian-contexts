@@ -40,7 +40,7 @@ export class ManageContextsModal extends Modal {
             .setName('Add files')
             .setDesc('Select files to add to this context.')
             .addButton(button => button
-                .setButtonText('+ Add file')
+                .setButtonText('Add file')
                 .onClick(() => {
                     new FileSelectorModal(this.app, (path) => {
                         const normalized = normalizePath(path);
@@ -81,38 +81,42 @@ export class ManageContextsModal extends Modal {
             .addButton(button => button
                 .setButtonText('Create context')
                 .setCta()
-                .onClick(async () => {
-                    if (!this.newContextName) {
-                        new Notice('Please enter a context name.');
-                        return;
-                    }
-                    if (this.newContextItems.length === 0) {
-                        new Notice('Please add at least one file.');
-                        return;
-                    }
+                .onClick(() => {
+                    void (async () => {
+                        if (!this.newContextName) {
+                            new Notice('Please enter a context name.');
+                            return;
+                        }
+                        if (this.newContextItems.length === 0) {
+                            new Notice('Please add at least one file.');
+                            return;
+                        }
 
-                    const executeSave = async () => {
-                        this.plugin.settings.savedContexts = this.plugin.settings.savedContexts.filter(c => c.name !== this.newContextName);
-                        
-                        this.plugin.settings.savedContexts.push({
-                            name: this.newContextName,
-                            items: [...this.newContextItems]
-                        });
-                        
-                        await this.plugin.saveSettings();
-                        new Notice(`Context "${this.newContextName}" created.`);
-                        
-                        this.newContextName = '';
-                        this.newContextItems = [];
-                        this.display();
-                    };
+                        const executeSave = async () => {
+                            this.plugin.settings.savedContexts = this.plugin.settings.savedContexts.filter(c => c.name !== this.newContextName);
+                            
+                            this.plugin.settings.savedContexts.push({
+                                name: this.newContextName,
+                                items: [...this.newContextItems]
+                            });
+                            
+                            await this.plugin.saveSettings();
+                            new Notice(`Context "${this.newContextName}" created.`);
+                            
+                            this.newContextName = '';
+                            this.newContextItems = [];
+                            this.display();
+                        };
 
-                    const exists = this.plugin.settings.savedContexts.some(c => c.name === this.newContextName);
-                    if (exists) {
-                        new ConfirmOverwriteModal(this.app, this.newContextName, executeSave).open();
-                    } else {
-                        await executeSave();
-                    }
+                        const exists = this.plugin.settings.savedContexts.some(c => c.name === this.newContextName);
+                        if (exists) {
+                            new ConfirmOverwriteModal(this.app, this.newContextName, () => {
+                                void executeSave();
+                            }).open();
+                        } else {
+                            await executeSave();
+                        }
+                    })();
                 }));
 
         contentEl.createEl('hr');
@@ -131,10 +135,12 @@ export class ManageContextsModal extends Modal {
                     .addButton(button => button
                         .setButtonText('Delete')
                         .setWarning()
-                        .onClick(async () => {
-                            this.plugin.settings.savedContexts = this.plugin.settings.savedContexts.filter(c => c.name !== context.name);
-                            await this.plugin.saveSettings();
-                            this.display(); 
+                        .onClick(() => {
+                            void (async () => {
+                                this.plugin.settings.savedContexts = this.plugin.settings.savedContexts.filter(c => c.name !== context.name);
+                                await this.plugin.saveSettings();
+                                this.display(); 
+                            })();
                         }));
             });
         }

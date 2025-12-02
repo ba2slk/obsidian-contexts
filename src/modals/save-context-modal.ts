@@ -58,7 +58,9 @@ export class SaveContextModal extends Modal {
             const exists = this.plugin.settings.savedContexts.some(c => c.name === contextName);
 
             if (exists) {
-                new ConfirmOverwriteModal(this.app, contextName, executeSave).open();
+                new ConfirmOverwriteModal(this.app, contextName, () => {
+                    void executeSave();
+                }).open();
             } else {
                 await executeSave();
             }
@@ -67,12 +69,12 @@ export class SaveContextModal extends Modal {
         new Setting(contentEl)
             .setName('Context name')
             .addText(text => text
-                .setPlaceholder('e.g., Coding, Reading...')
+                .setPlaceholder('e.g., coding, reading...')
                 .onChange(value => contextName = value)
                 .inputEl.addEventListener('keydown', (e: KeyboardEvent) => {
                     if (e.key === 'Enter') {
                         e.preventDefault();
-                        saveAndClose();
+                        void saveAndClose();
                     }
                 })
             );
@@ -81,7 +83,7 @@ export class SaveContextModal extends Modal {
             .addButton(button => button
                 .setButtonText('Save')
                 .setCta()
-                .onClick(saveAndClose));
+                .onClick(() => void saveAndClose()));
     }
 
     onClose() {
