@@ -1,7 +1,7 @@
 {
 	"id": "contexts",
 	"name": "Contexts",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"minAppVersion": "0.15.0",
 	"description": "Save and switch between different working contexts. Manages groups of tabs including Markdown, PDF, Canvas, and Images.",
 	"author": "ba2slk",
