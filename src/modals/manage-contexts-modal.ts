@@ -32,7 +32,7 @@ export class ManageContextsModal extends Modal {
         new Setting(contentEl)
             .setName('Context name')
             .addText(text => text
-                .setPlaceholder('My new context')
+                .setPlaceholder('Your context name')
                 .setValue(this.newContextName)
                 .onChange(value => this.newContextName = value));
 
@@ -43,9 +43,9 @@ export class ManageContextsModal extends Modal {
                 .setButtonText('+ Add file')
                 .onClick(() => {
                     new FileSelectorModal(this.app, (path) => {
-                        const normalizedPath = normalizePath(path);
-                        if (!this.newContextItems.includes(path)) {
-                            this.newContextItems.push(path);
+                        const normalized = normalizePath(path);
+                        if (!this.newContextItems.includes(normalized)) {
+                            this.newContextItems.push(normalized);
                             this.display();
                         } else {
                             new Notice('File already in list.');
@@ -54,24 +54,18 @@ export class ManageContextsModal extends Modal {
                 }));
 
         if (this.newContextItems.length > 0) {
-            const listDiv = contentEl.createDiv({ cls: 'selected-files-list' });
-            listDiv.style.border = '1px solid var(--background-modifier-border)';
-            listDiv.style.padding = '10px';
-            listDiv.style.borderRadius = '5px';
-            listDiv.style.marginBottom = '10px';
+            const listDiv = contentEl.createDiv();
+            listDiv.addClass('contexts-list-container');
 
             this.newContextItems.forEach((path, index) => {
                 const row = listDiv.createDiv();
-                row.style.display = 'flex';
-                row.style.justifyContent = 'space-between';
-                row.style.alignItems = 'center';
-                row.style.marginBottom = '5px';
+                row.addClass('contexts-list-item');
 
                 row.createSpan({ text: path });
 
                 const deleteBtn = row.createEl('button', { text: '✕' });
-                deleteBtn.style.marginLeft = '10px';
-                deleteBtn.style.padding = '2px 8px';
+                deleteBtn.addClass('contexts-delete-btn');
+                
                 deleteBtn.addEventListener('click', () => {
                     this.newContextItems.splice(index, 1);
                     this.display();
@@ -79,9 +73,7 @@ export class ManageContextsModal extends Modal {
             });
         } else {
             const emptyDiv = contentEl.createDiv();
-            emptyDiv.style.color = 'var(--text-muted)';
-            emptyDiv.style.fontStyle = 'italic';
-            emptyDiv.style.marginBottom = '10px';
+            emptyDiv.addClass('contexts-empty-state');
             emptyDiv.setText('No files selected yet.');
         }
 

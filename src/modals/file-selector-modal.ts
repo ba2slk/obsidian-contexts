@@ -29,11 +29,11 @@ export class FileSelectorModal extends Modal {
         }
 
         if (this.currentPath !== '/' && folder.parent) {
-            const backItem = listContainer.createDiv({ cls: 'nav-file-title' });
-            backItem.createSpan({ text: '📁 .. (Go back)', cls: 'nav-file-title-content' });
-            backItem.style.cursor = 'pointer';
-            backItem.style.padding = '5px';
-            backItem.style.fontWeight = 'bold';
+            const backItem = listContainer.createDiv();
+            backItem.addClass('contexts-file-item');
+            backItem.addClass('contexts-back-button');
+            
+            backItem.createSpan({ text: '📁 .. (Go back)' });
             backItem.onClickEvent(() => {
                 if (folder.parent) {
                     this.currentPath = folder.parent.path;
@@ -49,9 +49,8 @@ export class FileSelectorModal extends Modal {
         });
 
         children.forEach(file => {
-            const item = listContainer.createDiv({ cls: 'nav-file-title' });
-            item.style.cursor = 'pointer';
-            item.style.padding = '5px';
+            const item = listContainer.createDiv();
+            item.addClass('contexts-file-item');
             
             if (file instanceof TFolder) {
                 item.createSpan({ text: `📁 ${file.name}` });
