@@ -9,12 +9,12 @@ Contexts supports **all file types** including **PDFs, Canvases, Images, and Mar
 ## Key Features
 
 - **Universal Support:** Save and restore groups of tabs containing Markdown, PDF, Canvas, and Images.
-- **Cross-Device Friendly:** Context data contains only the relative file paths in your Vault. This design avoids the `workspaces.json` inconsistency issue in Core Workspaces, particularly when syncing a vault across devices. Tab gropus created on one device load consistently on the other without conflict. (_Note: layout arrangement is not preserved._)
+- **Cross-Device Friendly:** Context data contains only the relative file paths in your Vault. This design avoids the `workspace.json` inconsistency issue in Core Workspaces, particularly when syncing a vault across devices. Tab groups created on one device load consistently on the other without conflict. (_Note: layout arrangement is not preserved._)
 - **Safe Switching:** Switches contexts smoothly without leaving empty panes or glitches.
 - **Save & Overwrite:** Easily save your current layout. Includes protection against accidental overwrites.
 - **Management UI:**
     - View and delete saved contexts.
-    - **Manually create contexts** using a built-in **File Picker**.
+    - **Manually create contexts** using a built-in **File picker**.
 - **Minimalist:** Toggle the ribbon icon on/off via settings.
 
 ## How to Use
