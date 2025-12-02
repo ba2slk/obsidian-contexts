@@ -2,7 +2,7 @@
 
 **Contexts** allows you to save your open tabs as a "context" and switch between them seamlessly.
 
-Contexts supports **all file types** including **PDFs, Canvases, Images, and Markdown notes** and works well **across desktop and mobile**.
+Contexts supports **all file types** including **PDFs, Canvases, Images, and Markdown notes**. It also works well **across desktop and mobile**.
 
 ![contexts-demo](https://github.com/user-attachments/assets/4d46b30b-631c-4a41-afdb-61fe9230b553)
 
