@@ -3,6 +3,7 @@ import { ContextsPluginSettings, DEFAULT_SETTINGS } from './types';
 import { ContextsSettingTab } from './settings';
 import { SaveContextModal } from './modals/save-context-modal';
 import { SwitchContextModal } from './modals/switch-context-modal';
+import { ManageContextsModal } from './modals/manage-contexts-modal';
 
 export default class ContextsPlugin extends Plugin {
     settings: ContextsPluginSettings;
@@ -30,6 +31,14 @@ export default class ContextsPlugin extends Plugin {
                 new SwitchContextModal(this.app, this).open();
             }
         });
+        
+        this.addCommand({
+            id: 'manage-context',
+            name: 'Manage context',
+            callback: () => {
+                new ManageContextsModal(this.app, this).open();
+            }
+        })
     }
 
     onunload() {
