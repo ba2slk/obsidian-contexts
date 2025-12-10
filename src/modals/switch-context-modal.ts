@@ -1,5 +1,6 @@
 import { App, Modal, Notice, Setting, WorkspaceLeaf, TFile } from 'obsidian';
 import type ContextsPlugin from '../main';
+import { ContextsSettingTab } from 'src/settings';
 
 export class SwitchContextModal extends Modal {
     plugin: ContextsPlugin;
@@ -69,7 +70,18 @@ export class SwitchContextModal extends Modal {
                             new Notice(`Switched to context "${context.name}"`);
                             this.close();
                         })();
-                    }));
+                    })
+                )
+                .addButton(button => button
+                    .setButtonText('✕')
+                    .onClick(()=>{
+                        void (async () => {
+                            await this.plugin.deleteContext(context);
+                            contentEl.empty();
+                            this.onOpen();
+                        })();
+                    })
+                )
         });
     }
 

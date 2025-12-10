@@ -1,9 +1,10 @@
-import { Plugin } from 'obsidian';
-import { ContextsPluginSettings, DEFAULT_SETTINGS } from './types';
+import { Plugin, Notice } from 'obsidian';
+import { ContextsPluginSettings, DEFAULT_SETTINGS, SavedContext } from './types';
 import { ContextsSettingTab } from './settings';
 import { SaveContextModal } from './modals/save-context-modal';
 import { SwitchContextModal } from './modals/switch-context-modal';
 import { ManageContextsModal } from './modals/manage-contexts-modal';
+import { Context } from 'vm';
 
 export default class ContextsPlugin extends Plugin {
     settings: ContextsPluginSettings;
@@ -66,5 +67,11 @@ export default class ContextsPlugin extends Plugin {
                 this.ribbonIconEl = null;
             }
         }
+    }
+    
+    async deleteContext(context: SavedContext): Promise<void> {
+        this.settings.savedContexts = this.settings.savedContexts.filter(c => c.name != context.name);
+        await this.saveSettings();
+        new Notice(`Context "${context.name}" deleted.`)
     }
 }

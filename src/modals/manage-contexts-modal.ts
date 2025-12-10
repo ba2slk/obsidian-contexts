@@ -137,8 +137,7 @@ export class ManageContextsModal extends Modal {
                         .setWarning()
                         .onClick(() => {
                             void (async () => {
-                                this.plugin.settings.savedContexts = this.plugin.settings.savedContexts.filter(c => c.name !== context.name);
-                                await this.plugin.saveSettings();
+                                await this.plugin.deleteContext(context);
                                 this.display(); 
                             })();
                         }));
