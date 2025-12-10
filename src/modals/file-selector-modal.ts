@@ -33,7 +33,7 @@ export class FileSelectorModal extends Modal {
             backItem.addClass('contexts-file-item');
             backItem.addClass('contexts-back-button');
             
-            backItem.createSpan({ text: '📁 .. (Go back)' });
+            backItem.createSpan({ text: '📁 ..' });
             backItem.onClickEvent(() => {
                 if (folder.parent) {
                     this.currentPath = folder.parent.path;
