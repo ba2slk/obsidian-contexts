@@ -4,7 +4,7 @@
 
 Contexts supports **all file types** including **PDFs, Canvases, Images, and Markdown notes**. It also works well **across desktop and mobile**.
 
-![contexts-demo](https://github.com/user-attachments/assets/4d46b30b-631c-4a41-afdb-61fe9230b553)
+![contexts-v1 1 0-demo-basics](https://github.com/user-attachments/assets/6c069691-8321-4bc2-abde-26750d48556c)
 
 ## Key Features
 
@@ -30,27 +30,34 @@ Contexts supports **all file types** including **PDFs, Canvases, Images, and Mar
 3. Your current tabs will close, and the saved context will load instantly.
 
 ### 3. Managing Contexts
-![contexts-settings-demo](https://github.com/user-attachments/assets/976a9e2c-c411-4526-b003-385d28429618)
+![contexts-v1 1 0-demo-management](https://github.com/user-attachments/assets/012020af-5690-4a43-8392-5b46cf76da54)
 
-1. Go to **Settings** > **Contexts**.
+1. Go to **Settings** > **Contexts** (or open **Command Palette** and select '**Contexts: Manage contexts**').
 2. Click **Manage contexts**.
 3. In this modal, you can:
-    - **Delete** unwanted contexts.
     - **Manually create** a new context by selecting files from the **File picker**.
+    - **Delete** unwanted contexts.
 
 ## Installation
 
-### From Community Plugins (Coming Soon!)
+### Using BRAT
 1. Open **Settings** > **Community plugins**.
-2. Turn off **Safe Mode**.
-3. Click **Browse** and search for `Contexts`.
-4. Click **Install** and then **Enable**.
+2. Click **Browse** and install `BRAT`.
+3. Go to its own settings and find **Beta plugin list**.
+4. Click **Add beta plugin** and fill in the blank with `https://github.com/ba2slk/obsidian-contexts`.
+5. `BRAT` will automatically track and download the latest version of **Contexts** for you, as long as you keep it enabled.
 
 ### Manual Installation
 1. Download the `main.js`, `manifest.json`, and `styles.css` from the [Latest Release](https://github.com/ba2slk/obsidian-contexts/releases).
 2. Create a folder named `contexts` inside your vault's plugin folder: `.obsidian/plugins/`.
 3. Move the downloaded files into that folder.
 4. Reload Obsidian and enable the plugin in settings.
+
+### From Community Plugins (Coming Soon!)
+1. Open **Settings** > **Community plugins**.
+2. Turn off **Safe Mode**.
+3. Click **Browse** and search for `Contexts`.
+4. Click **Install** and then **Enable**.
 
 ## Contributing
 
